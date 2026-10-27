@@ -1,0 +1,6 @@
+> 本文是 [`project-analysis/agents/openai.yaml`](../../../project-analysis/agents/openai.yaml) 的中文翻译，仅作阅读用；英文原文为准。
+
+interface:
+  display_name: "项目分析"
+  short_description: "把代码仓库解析成流程、风险与下一步行动。"
+  default_prompt: "使用 $project-analysis 分析这个仓库，产出一份有证据支撑的架构地图、验证计划、风险和推荐的下一步行动。"

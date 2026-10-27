@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+dist/
+lib/
+*.tgz
+
+# 编辑器与系统
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 运行产物
+*.log
+.env
+.env.*
+!.env.example
+
+# Windows 链接（install.ps1 -Link 生成的联接不应入库）
+skills/**/.link
