@@ -1,5 +1,5 @@
-# 译自 project-analysis-skill (MIT) 的 agents/openai.yaml，仅翻译展示字符串；
-# 原文见 https://github.com/Bamzzo/project-analysis-skill ，如有歧义以英文原文为准。
+# 基于 project-analysis-skill (MIT) 的 agents/openai.yaml 改编（commit 0d594be，2026-05-28）；
+# 上游见 https://github.com/Bamzzo/project-analysis-skill ，本文件为适配中文场景的修改版。
 interface:
   display_name: "项目分析"
   short_description: "把代码仓库解析成流程、风险与下一步行动。"

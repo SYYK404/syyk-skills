@@ -1,6 +1,6 @@
 # 分析检查清单
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
+> 基于 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT）commit 0d594be（2026-05-28）改编，含内容修改与增补。
 
 在仓库分析过程中使用这些清单。除非用户明确要求清单，否则不要原样倾倒；用它们来避免遗漏重要方面。
 

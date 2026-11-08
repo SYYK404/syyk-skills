@@ -5,7 +5,7 @@ description: 用于被要求分析、上手、逆向、记录、评估、审计�
 
 # 项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
+> 基于 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT）commit 0d594be（2026-05-28）改编，含内容修改与增补。
 
 用这个 Skill 把一个陌生或混乱的项目变成清晰、可行动的map。目标不只是总结文件，而是解释这个项目如何工作、核心路径在哪里、什么会坏、怎么验证、下一步做什么。
 

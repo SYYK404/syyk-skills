@@ -1,6 +1,6 @@
 # 安全敏感型项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
+> 基于 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT）commit 0d594be（2026-05-28）改编，含内容修改与增补。
 
 用于安全敏感评审、认证/授权分析、密钥处理、依赖/供应链风险、外部动作执行系统，或面向审计的项目分析。这是代码与架构层面的评审辅助，**不能替代正式的渗透测试**。
 

@@ -1,6 +1,6 @@
 # 输出模板
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
+> 基于 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT）commit 0d594be（2026-05-28）改编，含内容修改与增补。
 
 把这些模板当作起点。按用户目的调整章节顺序。
 

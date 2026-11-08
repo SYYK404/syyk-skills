@@ -1,6 +1,6 @@
 # Web 与应用项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
+> 基于 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT）commit 0d594be（2026-05-28）改编，含内容修改与增补。
 
 用于前端、后端、全栈、Electron、桌面 webview 或 API 服务类项目。
 
