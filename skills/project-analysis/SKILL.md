@@ -5,7 +5,7 @@ description: 用于被要求分析、上手、逆向、记录、评估、审计�
 
 # 项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 用这个 Skill 把一个陌生或混乱的项目变成清晰、可行动的map。目标不只是总结文件，而是解释这个项目如何工作、核心路径在哪里、什么会坏、怎么验证、下一步做什么。
 
@@ -19,6 +19,8 @@ description: 用于被要求分析、上手、逆向、记录、评估、审计�
 - 产出面向行动：下一步该读什么、跑什么、测什么、修什么、避免什么。
 - 不要暴露密钥。扫描配置时，只笼统说明存在密钥，不打印具体值。
 - 避免逐文件摘要。按角色、流程、边界和风险来解释系统。
+- 不要把没读过的文件列进「已检查」清单；宁少报不多报。
+- 不要编造 `file:path:line` 证据；拿不准的论断标 Inferred 或 Open。
 
 ## 选择深度
 
@@ -35,16 +37,13 @@ description: 用于被要求分析、上手、逆向、记录、评估、审计�
 
 ## 核心工作流
 
+> quick / standard 深度走本工作流；deep、audit 深度或仓库过大时改走「大项目协议」。
+
 1. 必要时先澄清分析目标：
    - 上手、架构报告、调试、重构规划、周报、技术评审或学习路线。
    - 若用户请求已足够明确，直接进行，不要追问。
 
-2. 清点仓库：
-   - 列出顶层文件与目录。
-   - 识别语言/框架/包管理文件。
-   - 找出文档、配置、脚本、测试、示例、CI 与环境模板。
-   - 优先使用 `rg --files` 这类快速检索工具。
-   - 忽略或降权生成物/vendor/缓存/构建目录，除非它们正是任务对象。
+2. 清点仓库：按下方「只读探查基线」执行，识别语言/框架/包管理文件，以及文档、配置、脚本、测试、CI 与环境模板。
 
 3. 分类项目形态：
    - 单应用、全栈应用、库、CLI、monorepo、Agent 系统、数据/ML 管道、基础设施项目、插件/扩展、移动/桌面应用或混合系统。
@@ -96,9 +95,9 @@ description: 用于被要求分析、上手、逆向、记录、评估、审计�
 
 ## 大项目协议
 
-对庞大或陌生的仓库分阶段推进，避免过早深挖：
+对庞大或陌生的仓库分阶段推进，避免过早深挖（deep、audit 深度或仓库过大时使用，替代核心工作流）：
 
-1. **表面地图**：收集顶层结构、包/workspace 文件、文档、脚本、CI、配置、测试，以及生成物/vendor 目录。
+1. **表面地图**：按「只读探查基线」收集全仓概况，明确标注将跳过的生成物/vendor 目录。
 2. **系统分类**：识别项目类型、运行时边界、包边界、归属边界与可部署单元。
 3. **入口地图**：找出每个主要单元如何启动、构建、测试，以及如何与其他单元通信。
 4. **核心路径选择**：按用户目标挑选 1–3 条最高价值流程。
@@ -110,20 +109,22 @@ description: 用于被要求分析、上手、逆向、记录、评估、审计�
 
 ## 参考文件加载
 
-只加载相关的 reference 文件：
+只加载相关的 reference 文件，按分析场景对号入座：
 
-- 需要报告结构与交付格式时，读 `references/output-templates.md`。
-- 需要通用项目检查问题清单时，读 `references/analysis-checklists.md`。
-- 面向 Agent、LLM、工具调用、工作流或自动化项目时，读 `references/agent-projects.md`。
-- 面向前端/后端/Web 应用时，读 `references/web-projects.md`。
-- 面向调试型分析时，读 `references/debugging-projects.md`。
-- 面向 monorepo、workspace、多包仓库或混合语言系统时，读 `references/monorepos.md`。
-- 面向数据、ML、分析、ETL、训练、评测或推理项目时，读 `references/data-ml-projects.md`。
-- 面向基础设施、部署、云、CI/CD、容器、Kubernetes 或 Terraform 项目时，读 `references/infra-projects.md`。
-- 面向库、SDK、CLI、包、插件或扩展项目时，读 `references/library-cli-projects.md`。
-- 面向移动端、桌面端、Electron、Tauri、Flutter、React Native、Android 或 iOS 项目时，读 `references/mobile-desktop-projects.md`。
-- 面向数据库密集型项目、schema 仓库、迁移、ORM 或数据持久化评审时，读 `references/database-projects.md`。
-- 面向安全敏感评审、认证/授权分析、密钥处理或供应链风险时，读 `references/security-audit-projects.md`。
+| 分析场景 | 参考文件 |
+|---|---|
+| 报告结构与交付格式 | `references/output-templates.md` |
+| 通用项目检查问题清单 | `references/analysis-checklists.md` |
+| Agent / LLM / 工具调用 / 工作流 / 自动化 | `references/agent-projects.md` |
+| 前端 / 后端 / Web 应用 | `references/web-projects.md` |
+| 调试型分析 | `references/debugging-projects.md` |
+| monorepo / workspace / 多包 / 混合语言 | `references/monorepos.md` |
+| 数据 / ML / 分析 / ETL / 训练 / 评测 / 推理 | `references/data-ml-projects.md` |
+| 基础设施 / 部署 / 云 / CI/CD / 容器 / Kubernetes / Terraform | `references/infra-projects.md` |
+| 库 / SDK / CLI / 包 / 插件 / 扩展 | `references/library-cli-projects.md` |
+| 移动端 / 桌面端 / Electron / Tauri / Flutter / React Native / Android / iOS | `references/mobile-desktop-projects.md` |
+| 数据库密集型 / schema / 迁移 / ORM / 持久化评审 | `references/database-projects.md` |
+| 安全评审 / 认证授权 / 密钥处理 / 供应链风险 | `references/security-audit-projects.md` |
 
 ## 默认输出结构
 

@@ -1,6 +1,6 @@
 # 输出模板
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 把这些模板当作起点。按用户目的调整章节顺序。
 
@@ -289,4 +289,40 @@
 ## 暂时不要改动的部分
 
 ## 建议的下一步
+```
+
+## 填充示例：快速分诊（quick 深度）
+
+以下是填充后的成品示例，展示期望的粒度与证据标注方式；内容为虚构项目，格式为准。
+
+```markdown
+# 项目快速分诊 — md2post
+
+## 这个项目看起来是什么
+把 Markdown 文件转换成静态博客文章 HTML 的小型 CLI 工具（Inferred，依据 README.md:1-8 与 bin 字段）。
+
+## 主要技术栈
+Node.js 18+，无框架，零运行时依赖（Runtime-verified：package.json dependencies 为空）。
+
+## 最重要的文件
+| 路径 | 角色 |
+|---|---|
+| bin/md2post.js | CLI 入口，解析参数并调度转换 |
+| lib/convert.js | 核心转换逻辑（Markdown → HTML） |
+| lib/template.js | HTML 模板拼装 |
+| test/convert.test.js | 转换逻辑的 12 个单元测试 |
+
+## 它可能如何运行
+`md2post <input.md> -o dist/` → 读文件 → convert.js 逐段转 HTML → template.js 套模板 → 写入输出目录（Inferred，未运行验证）。
+
+## 主要流程
+文件输入 → 参数解析（bin:8-21）→ convert（lib/convert.js:15-64）→ 写盘。无外部服务、无持久状态。
+
+## 即时风险 / 未知项
+- convert.js 对嵌套列表的解析是手写正则（lib/convert.js:30-44），深嵌套场景疑似有 bug（Observed 代码结构 / Open 行为验证）。
+- 无 CI 配置，测试只能在本地手动跑（Observed）。
+
+## 最该先跑的命令
+1. `npm test` — 验证现有 12 个测试是否通过
+2. `node bin/md2post.js examples/demo.md -o /tmp/out && open /tmp/out` — 冒烟验证主流程
 ```

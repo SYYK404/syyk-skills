@@ -1,6 +1,6 @@
 # 库、SDK、CLI、插件与扩展分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 用于可复用包、SDK、命令行工具、插件、扩展、框架集成或开发者工具。
 

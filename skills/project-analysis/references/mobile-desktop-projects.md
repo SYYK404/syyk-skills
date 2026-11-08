@@ -1,6 +1,6 @@
 # 移动端与桌面端项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 用于 Android、iOS、Flutter、React Native、Electron、Tauri、桌面 webview 或原生桌面项目。
 

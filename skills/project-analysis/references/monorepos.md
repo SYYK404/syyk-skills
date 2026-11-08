@@ -1,6 +1,6 @@
 # Monorepo 与多包分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 用于 monorepo、workspace、多语言仓库、多服务系统，或包含许多可部署/可发布单元的仓库。
 

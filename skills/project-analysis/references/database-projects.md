@@ -1,6 +1,6 @@
 # 数据库与持久化项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 用于数据库密集型应用、schema 仓库、迁移、ORM、持久化层、数据访问模块，或正确性依赖已存储状态的项目。
 

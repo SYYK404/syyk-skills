@@ -1,6 +1,6 @@
 # 基础设施、部署与 DevOps 项目分析
 
-> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），中文译文；如有歧义以英文原文为准。
+> 译自 [project-analysis-skill](https://github.com/Bamzzo/project-analysis-skill)（MIT），基于上游 0d594be（2026-05-28）；中文译文，如有歧义以英文原文为准。
 
 用于 Terraform、Pulumi、CloudFormation、Kubernetes、Docker、CI/CD、部署脚本、平台工具链或云基础设施仓库。
 
