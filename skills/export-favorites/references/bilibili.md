@@ -4,7 +4,7 @@
 
 收藏夹页（`space.bilibili.com/{uid}/favlist`）既不滚动加载、也无可探测的分页 DOM，页面数据本身来自 API，所以直接在页面上下文里 `fetch` 同一 API：与页面同登录态（`credentials: 'include'`）、只读、数据不出本机。
 
-**单次 evaluate 必须在 3s 内**：一次 fetch 一页，分页循环放在 REPL 的 JS 里驱动，每页之间 `setTimeout` 400ms 防风控。返回 `code !== 0` 时退避 2s 重试，连续 3 次失败再放弃该夹；页数上限用 `ceil(media_count / 20) + 2` 兜底。
+**单次页内脚本保持短小**：一次请求一页；分页循环由宿主端脚本驱动，每页之间延时 400ms 防风控。返回 `code !== 0` 时退避 2s 重试，连续 3 次失败再放弃该夹；页数上限用 `ceil(media_count / 20) + 2` 兜底。
 
 ## 登录与 UID
 
