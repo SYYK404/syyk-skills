@@ -2,16 +2,18 @@
 
 ## 登录与 UID
 
-登录判定：顶部导航出现用户头像（`nav a[href^="/user/"]`）即已登录；未登录则打开 `juejin.cn` 让用户登录（掘金支持账号密码/短信，通常用户自己完成）。
-
-UID 按通用协议从顶部导航头像链接取：
+登录与身份统一用掘金会话接口判定——头像链接的 DOM 结构随版本变化，DOM 选择器不可靠；内容区的 `/user/` 链接指向文章作者，也不能当登录身份：
 
 ```js
-const a = document.querySelector('nav a[href^="/user/"]');   // 顶部导航的头像 → 登录用户
-const uid = a.getAttribute('href').match(/user\/(\d+)/)[1];
+const res = await fetch('https://api.juejin.cn/user_api/v1/user/profile_id?aid=2608&spider=0', { credentials: 'include' });
+const j = await res.json();
+// 已登录：j.data.profile_id 为当前用户 UID；未登录：data 为空
+const uid = j.data && j.data.profile_id;
 ```
 
-（内容区如推荐文章卡片里的 `/user/` 链接指向文章作者，不能当登录身份。）
+注意返回字段是 `err_no` / `data.profile_id`，与常见接口的 `code` / `message` 命名不同。
+
+未登录则打开 `juejin.cn` 让用户登录（掘金支持账号密码/短信，通常用户自己完成）。
 
 ## 收藏集清单（从 DOM 读）
 
@@ -21,7 +23,7 @@ const uid = a.getAttribute('href').match(/user\/(\d+)/)[1];
 link "拓展 2026-10-31 更新 · 184篇文章 · 0订阅" → /collection/6959522577165320200
 ```
 
-用 `a[href^="/collection/"]` 收集 `{id, 标题, 文章数}`。「我的收藏（默认）」可能为 0 篇，跳过。「我订阅的」（`?type=following`）如需要另开一页读。
+用 `a[href^="/collection/"]` 收集 `{id, 标题, 文章数}`。标题取链接文本中「YYYY-MM-DD 更新」日期前的部分；无日期的条目（如「我的收藏 默认 0篇文章 · 0订阅 编辑」）解析后带尾巴，需要再按「默认/我的收藏」裁剪。「我的收藏（默认）」可能为 0 篇，跳过。「我订阅的」（`?type=following`）如需要另开一页读。两个收藏集可能同名（如两个「待看」），以 id 区分。
 
 ## 提取机制：滚动 + 等流推完
 
