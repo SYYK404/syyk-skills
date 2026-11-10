@@ -71,12 +71,12 @@ for (const [platform, groupsRaw] of byPlatform) {
     md += `## ${head}\n\n`;
     txt += `\n===== ${head} =====\n\n`;
     g.data.forEach((it, i) => {
-      md += `### ${i + 1}. [${escMd(it.title)}](${it.url})\n`;
+      md += `### ${i + 1}. [${escMd(it.title || it.noteId || it.url)}](${it.url})\n`;
       const sec = secondary(it), st = statsLine(it);
       if (sec) md += `- **作者**: ${sec}\n`;
       if (st) md += `- ${st}\n`;
       md += `\n`;
-      txt += `${i + 1}. ${it.title}${sec ? ` [${sec}]` : ""}\n   ${it.url}${st ? `\n   ${st}` : ""}\n\n`;
+      txt += `${i + 1}. ${it.title || it.noteId || it.url}${sec ? ` [${sec}]` : ""}\n   ${it.url}${st ? `\n   ${st}` : ""}\n\n`;
     });
   }
   fs.writeFileSync(path.join(OUT, `${platform}_favorites.md`), md);
