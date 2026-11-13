@@ -1,9 +1,9 @@
 ---
 name: export-favorites
-description: 从抖音、B站、掘金、小红书导出用户自己账号的收藏到本地 JSON/Markdown/TXT。在浏览器自动化环境中提取（抖音=DOM 滚动、B站=页内 API、掘金=SSR 流式 DOM、小红书=DOM 滚动）。只要用户提到导出/备份/抓取收藏、收藏夹、收藏集、favorites，或想拿回自己账号的收藏数据——哪怕只提到其中一个平台——都使用本技能。
+description: 从抖音、B站、掘金、小红书、小黑盒导出用户自己账号的收藏到本地 JSON/Markdown/TXT。在浏览器自动化环境中提取（抖音=DOM 滚动、B站=页内 API、掘金=SSR 流式 DOM、小红书=DOM 滚动、小黑盒=页内 fetch 重放）。只要用户提到导出/备份/抓取收藏、收藏夹、收藏集、favorites，或想拿回自己账号的收藏数据——哪怕只提到其中一个平台——都使用本技能。
 ---
 
-# 收藏导出（抖音 / B站 / 掘金 / 小红书）
+# 收藏导出（抖音 / B站 / 掘金 / 小红书 / 小黑盒）
 
 帮用户把自己账号的收藏完整导出为本地文件。核心原则：**登录态来自用户本人（已登录的会话或用户扫码），数据只写本地文件，不经过任何第三方**。
 
@@ -27,6 +27,7 @@ description: 从抖音、B站、掘金、小红书导出用户自己账号的收
 | B站 | 页面上下文调用 B站自有 API（收藏夹 + 合集两种） | [references/bilibili.md](references/bilibili.md) |
 | 掘金 | 收藏集 SSR 流式渲染，滚动等流推完再从 DOM 提取 | [references/juejin.md](references/juejin.md) |
 | 小红书 | DOM 滚动提取虚拟列表卡片（API 有签名壁垒，只读 DOM 不碰接口） | [references/xiaohongshu.md](references/xiaohongshu.md) |
+| 小黑盒 | 页面上下文 fetch 重放收藏 API（offset 分页，无签名壁垒） | [references/xiaoheihe.md](references/xiaoheihe.md) |
 
 进入某平台前**必须先读对应参考文件**——每个平台的关键选择器、接口参数都在里面，不要凭记忆猜。
 
@@ -62,9 +63,13 @@ description: 从抖音、B站、掘金、小红书导出用户自己账号的收
 
 ```bash
 node <本技能目录>/scripts/export-formats.mjs <原始JSON目录>
+# 可选：生成交互式总览页
+node <本技能目录>/scripts/build-overview-html.mjs <原始JSON目录>
 ```
 
-脚本会在该目录下生成 `final/`：每个平台一份 `xxx_favorites.{json,md,txt}`（MD 按收藏夹分节）+ 全平台合并的 `all_favorites.json`。
+前者在该目录下生成 `final/`：每个平台一份 `xxx_favorites.{json,md,txt}`（MD 按收藏夹分节）+ 全平台合并的 `all_favorites.json`。
+
+后者在目录下生成 `收藏总览.html`——自包含单文件（1745 条约 460 KB，数据内嵌、离线可用），支持搜索、平台/收藏夹筛选、热度/时间排序、跨收藏夹去重、一键复制链接。用户想「筛选和查看」收藏时主动提供。用户要求其他数据加工（去重分析、按作者统计等）时，以此页为基线扩展，不要从零重写。
 
 ## 扩展：知乎（未实测）
 
